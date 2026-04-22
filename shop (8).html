@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop Research Compounds | GLP & Skincare — She's Fit</title>
+<meta name="description" content="Browse She's Fit's full collection of research-grade compounds. GLP-3 RT ($55), GLP-2 TIRZ ($75), GLOW skincare compound ($120), BAC Water ($55). Third-party lab tested, 99%+ purity. Research use only.">
+<meta name="keywords" content="buy research peptides, GLP-3 research, GLP-2 tirzepatide research, BAC water research, research grade peptides, lab tested compounds shop">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shesfit.us/shop.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shesfit.us/shop.html">
+<meta property="og:title" content="Shop Research Compounds — She's Fit">
+<meta property="og:description" content="GLP-3 RT, GLP-2 TIRZ, GLOW, BAC Water. All third-party tested, 99%+ purity. Research use only.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "She's Fit Research Compounds",
+  "url": "https://shesfit.us/shop.html",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"GLP-3 RT","url":"https://shesfit.us/product.html?id=1","description":"Research grade GLP-3 RT compound, 99% purity"},
+    {"@type":"ListItem","position":2,"name":"GLP-2 TIRZ","url":"https://shesfit.us/product.html?id=2","description":"Research grade GLP-2 Tirzepatide compound"},
+    {"@type":"ListItem","position":3,"name":"GLOW","url":"https://shesfit.us/product.html?id=3","description":"Research grade skincare compound"},
+    {"@type":"ListItem","position":4,"name":"BAC Water","url":"https://shesfit.us/product.html?id=4","description":"Hospira gold standard bacteriostatic water"}
+  ]
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#1A1218;--deep:#221929;--panel:#2A1F2D;--card:#321F35;
+  --border:rgba(212,175,140,0.12);--border-bright:rgba(212,175,140,0.25);
+  --gold:#C9A96E;--gold2:#E8C99A;--rose:#D4768A;--rose-light:#F2AABB;
+  --blush:#F9EEF0;--champagne:#F5EDE0;--white:#FFFFFF;--muted:#9E8EA0;
+  --light-bg:#FBF7F5;--light-card:#FFFFFF;--light-border:#EDE4E8;
+  --light-text:#2C1F2E;--light-muted:#8A7A8C;--warn:#D4907A;
+}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:auto;}
+body{font-family:'DM Sans',sans-serif;background:var(--deep);color:var(--white);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:70px;background:var(--deep);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.7rem;letter-spacing:0.08em;color:var(--white);font-style:italic;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:2.5rem;}
+.nav-links a{font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.cart-btn{display:flex;align-items:center;gap:0.5rem;background:var(--gold);color:var(--black);padding:0.5rem 1.2rem;border-radius:4px;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.cart-btn:hover{background:var(--gold2);}
+.cart-count-badge{background:var(--black);color:var(--gold);border-radius:3px;padding:1px 6px;font-size:0.72rem;font-weight:700;}
+.carousel-section{position:relative;height:500vh;}
+.carousel-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--deep);}
+.carousel-sticky::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(212,175,140,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,140,0.025) 1px,transparent 1px);background-size:60px 60px;z-index:0;}
+.carousel-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,169,110,0.07) 0%,transparent 70%);transition:background 0.8s ease;z-index:0;}
+.carousel-dots{position:absolute;right:3rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:0.8rem;z-index:10;}
+.carousel-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.2);transition:all 0.4s;cursor:pointer;}
+.carousel-dot.active{background:var(--gold);height:22px;border-radius:3px;}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.28);z-index:10;transition:opacity 0.5s;}
+.scroll-hint-arrow{width:18px;height:18px;border-right:1.5px solid rgba(255,255,255,0.25);border-bottom:1.5px solid rgba(255,255,255,0.25);transform:rotate(45deg);animation:bounceDown 1.5s infinite;}
+@keyframes bounceDown{0%,100%{transform:rotate(45deg) translateY(0);}50%{transform:rotate(45deg) translateY(5px);}}
+.carousel-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0.94);transition:opacity 0.6s ease,transform 0.6s ease;pointer-events:none;z-index:1;}
+.carousel-slide.active{opacity:1;transform:scale(1);pointer-events:all;}
+.carousel-slide.exiting{opacity:0;transform:scale(1.04);}
+.slide-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;width:100%;padding:0 4rem;}
+.slide-visual{position:relative;aspect-ratio:1;max-width:440px;width:100%;border-radius:16px;background:var(--card);border:1px solid var(--border-bright);display:flex;align-items:center;justify-content:center;font-size:10rem;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.5);}
+.slide-visual img{width:100%;height:100%;object-fit:cover;}
+.slide-visual::after{content:'';position:absolute;inset:0;border-radius:16px;background:linear-gradient(135deg,rgba(255,255,255,0.03) 0%,transparent 60%);pointer-events:none;}
+.slide-number{position:absolute;top:1.2rem;left:1.4rem;font-family:'Cormorant Garamond',serif;font-size:0.85rem;letter-spacing:0.2em;color:rgba(255,255,255,0.2);font-style:italic;}
+.slide-text{display:flex;flex-direction:column;}
+.slide-eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+.slide-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--gold);}
+.slide-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.5rem);line-height:1.0;color:var(--white);letter-spacing:0.01em;margin-bottom:1.2rem;font-weight:500;}
+.slide-desc{font-size:0.93rem;color:rgba(255,255,255,0.45);line-height:1.85;margin-bottom:1rem;max-width:380px;font-weight:300;}
+.slide-price{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:500;color:var(--white);margin-bottom:0.6rem;}
+.slide-stock{font-size:0.76rem;font-weight:600;margin-bottom:2rem;display:flex;align-items:center;gap:0.4rem;}
+.slide-stock.ok{color:#7BC4A0;}.slide-stock.ok::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:#7BC4A0;}
+.slide-stock.low{color:var(--warn);}.slide-stock.low::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--warn);}
+.slide-stock.out{color:#E09090;}
+.slide-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.slide-view-btn{background:transparent;color:rgba(255,255,255,0.55);padding:0.85rem 1.6rem;border-radius:5px;border:1px solid var(--border-bright);font-weight:500;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;font-family:'DM Sans',sans-serif;cursor:pointer;}
+.slide-view-btn:hover{border-color:var(--rose);color:var(--rose);}
+.slide-atc-btn{background:var(--gold);color:var(--black);padding:0.85rem 1.8rem;border-radius:5px;border:none;font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;font-family:'DM Sans',sans-serif;cursor:pointer;}
+.slide-atc-btn:hover{background:var(--gold2);transform:translateY(-2px);}
+.slide-atc-btn:disabled{background:var(--muted);cursor:not-allowed;transform:none;}
+.shop-grid-section{background:var(--light-bg);padding:5rem;}
+.grid-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1.5rem;}
+.grid-eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--rose);margin-bottom:0.4rem;}
+.grid-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--light-text);letter-spacing:0.01em;font-weight:500;}
+.shop-controls{display:flex;gap:0.6rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+.filter-btn{padding:0.45rem 1.1rem;border-radius:4px;border:1px solid var(--light-border);background:var(--light-card);font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--light-muted);letter-spacing:0.08em;text-transform:uppercase;}
+.filter-btn.active,.filter-btn:hover{background:var(--rose);color:white;border-color:var(--rose);}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
+.product-card{background:var(--light-card);border:1px solid var(--light-border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all 0.25s;}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(44,31,46,0.1);border-color:rgba(201,169,110,0.35);}
+.product-card.out-of-stock{opacity:0.5;cursor:default;}.product-card.out-of-stock:hover{transform:none;box-shadow:none;}
+.product-img{height:220px;background:linear-gradient(135deg,#2A1F2D,#3D2840);display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden;}
+.product-img img{width:100%;height:100%;object-fit:cover;}
+.oos-badge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.75);color:#fff;font-size:0.68rem;padding:0.3rem 0.8rem;border-radius:3px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;}
+.low-badge{position:absolute;top:12px;left:12px;background:var(--warn);color:var(--white);font-size:0.68rem;padding:0.3rem 0.8rem;border-radius:3px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
+.product-info{padding:1.2rem;}
+.product-cat{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose);margin-bottom:0.4rem;font-weight:600;}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--light-text);margin-bottom:0.3rem;}
+.product-desc{font-size:0.78rem;color:var(--light-muted);line-height:1.55;margin-bottom:0.9rem;}
+.product-footer{display:flex;align-items:center;justify-content:space-between;}
+.product-price{font-size:1.05rem;font-weight:600;color:var(--light-text);}
+.product-stock-label{font-size:0.68rem;color:var(--light-muted);margin-top:2px;}
+.atc-btn{background:var(--light-text);color:white;border:none;padding:0.5rem 1rem;border-radius:4px;font-size:0.73rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.06em;transition:all 0.2s;text-transform:uppercase;}
+.atc-btn:hover{background:var(--gold);color:var(--black);}
+.loading-spinner{display:flex;align-items:center;justify-content:center;padding:4rem;color:var(--light-muted);font-size:0.88rem;gap:0.8rem;}
+.spinner{width:18px;height:18px;border:2px solid var(--light-border);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--panel);color:var(--white);border:1px solid var(--border-bright);padding:1rem 1.5rem;border-radius:8px;font-size:0.86rem;font-weight:500;opacity:0;transform:translateY(20px);transition:all 0.3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.age-gate-overlay{position:fixed;inset:0;z-index:99999;background:rgba(22,12,25,0.97);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);transition:opacity 0.4s;}
+.age-gate-overlay.hidden{opacity:0;pointer-events:none;}
+.age-gate-box{background:var(--card);border:1px solid var(--border-bright);border-radius:16px;padding:3rem 2.5rem;max-width:440px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,0.6);}
+.age-gate-icon{font-size:2.8rem;margin-bottom:1rem;}
+.age-gate-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:#FFF;letter-spacing:0.03em;margin-bottom:0.5rem;font-weight:500;}
+.age-gate-title span{color:var(--gold);}
+.age-gate-sub{font-size:0.85rem;color:rgba(255,255,255,0.48);line-height:1.75;margin-bottom:2rem;font-weight:300;}
+.age-gate-actions{display:flex;gap:1rem;}
+.age-gate-yes{flex:1;background:var(--gold);color:var(--black);padding:0.9rem;border:none;border-radius:6px;font-size:0.85rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-yes:hover{background:var(--gold2);}
+.age-gate-no{flex:1;background:transparent;color:rgba(255,255,255,0.35);padding:0.9rem;border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-size:0.85rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-disclaimer{font-size:0.7rem;color:rgba(255,255,255,0.2);margin-top:1.5rem;line-height:1.65;}
+.glow-card { border-color: rgba(212,118,138,0.25) !important; }
+.glow-card:hover { border-color: rgba(212,118,138,0.5) !important; box-shadow: 0 20px 40px rgba(212,118,138,0.08) !important; }
+.glow-card .product-cat { color: var(--rose) !important; }
+.glow-badge { position:absolute;top:12px;right:12px;background:linear-gradient(135deg,var(--rose),var(--gold));color:#fff;font-size:0.65rem;padding:0.25rem 0.7rem;border-radius:20px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase; }
+.glow-img-bg { background: linear-gradient(135deg, #2A1A2E, #1E0F1A) !important; }
+@media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}.slide-inner{grid-template-columns:1fr;gap:2rem;padding:0 1.5rem;text-align:center;}.slide-visual{max-width:260px;margin:0 auto;font-size:6rem;}.slide-name{font-size:3rem;}.slide-actions{justify-content:center;}.carousel-dots{right:1rem;}.shop-grid-section{padding:3rem 1.5rem;}}
+</style>
+</head>
+<body>
+<div class="age-gate-overlay" id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-icon">🌸</div>
+    <h2 class="age-gate-title">Welcome to <span>She's Fit</span></h2>
+    <p class="age-gate-sub">This website contains products intended for adults only. You must be 21 years of age or older to enter.</p>
+    <div class="age-gate-actions">
+      <button class="age-gate-yes" onclick="ageGateConfirm()">Yes, I'm 21+</button>
+      <button class="age-gate-no" onclick="ageGateDeny()">No, Exit</button>
+    </div>
+    <p class="age-gate-disclaimer">By entering this site you confirm you are of legal age in your jurisdiction and agree to our terms of use.</p>
+  </div>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo">She's <span>Fit</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="shop.html">Shop</a>
+    <a href="index.html#about">About</a><a href="index.html#reviews">Reviews</a>
+    <a href="coa.html">Lab Results</a>
+  </div>
+  <button class="cart-btn" onclick="window.location='cart.html'">Cart <span class="cart-count-badge" id="cart-count">0</span></button>
+</nav>
+<div class="carousel-section" id="carousel-section">
+  <div class="carousel-sticky" id="carousel-sticky">
+    <div class="carousel-glow" id="carousel-glow"></div>
+    <div id="slides-container"></div>
+    <div class="carousel-dots" id="carousel-dots"></div>
+    <div class="scroll-hint" id="scroll-hint">
+      <span>Scroll to explore</span>
+      <div class="scroll-hint-arrow"></div>
+    </div>
+  </div>
+</div>
+<div class="shop-grid-section">
+  <div class="grid-header">
+    <div><div class="grid-eyebrow">Full Collection</div><h2 class="grid-title">All Products</h2></div>
+  </div>
+  <div class="shop-controls">
+    <button class="filter-btn active" onclick="filterProducts('All',this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('GLPs',this)">GLPs</button>
+    <button class="filter-btn" onclick="filterProducts('Skincare',this)">Skincare</button>
+    <button class="filter-btn" onclick="filterProducts('BAC',this)">BAC</button>
+    <button class="filter-btn" onclick="filterProducts('Other',this)">Other</button>
+  </div>
+  <div class="product-grid" id="shop-grid"><div class="loading-spinner"><div class="spinner"></div>Loading products...</div></div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="db.js"></script>
+<script src="chatbot.js"></script>
+<script>
+initAgeGate();
+updateCartCount();
+
+var allProducts = [];
+var currentFilter = 'All';
+var carouselItems = [];
+var currentSlide = 0;
+var isTransitioning = false;
+
+getProducts(function(products) {
+  allProducts = products;
+  getCarouselIds(function(ids) {
+    if (ids && ids.length) {
+      carouselItems = ids.map(function(id){ return products.find(function(p){ return p.id==id; }); }).filter(Boolean);
+    }
+    if (!carouselItems.length) carouselItems = products.slice(0,4);
+    buildCarousel();
+    renderShop();
+  });
+});
+
+function buildCarousel() {
+  var container = document.getElementById('slides-container');
+  var dotsContainer = document.getElementById('carousel-dots');
+  var glowColors = ['rgba(201,169,110,0.08)','rgba(212,118,138,0.08)','rgba(232,201,154,0.07)','rgba(242,170,187,0.07)'];
+  container.innerHTML = ''; dotsContainer.innerHTML = '';
+  carouselItems.forEach(function(p, idx) {
+    var oos = (p.stock||0) <= 0;
+    var low = p.stock > 0 && p.stock <= 3;
+    var stockClass = oos?'out':low?'low':'ok';
+    var stockText = oos?'Out of stock':low?'Only '+p.stock+' remaining':(p.stock||0)+' in stock';
+    var vis = (p.image&&p.image.trim()) ? '<img src="'+p.image+'" alt="'+p.name+'" style="width:100%;height:100%;object-fit:cover;">' : '<span>'+p.emoji+'</span>';
+    var slide = document.createElement('div');
+    slide.className = 'carousel-slide'+(idx===0?' active':'');
+    slide.dataset.glow = glowColors[idx%glowColors.length];
+    slide.innerHTML = '<div class="slide-inner">'
+      +'<div class="slide-visual"><div class="slide-number">0'+(idx+1)+' / 0'+carouselItems.length+'</div>'+vis+'</div>'
+      +'<div class="slide-text">'
+      +'<div class="slide-eyebrow">Lab Verified Compound</div>'
+      +'<h2 class="slide-name">'+p.name+'</h2>'
+      +'<p class="slide-desc">'+p.desc+'</p>'
+      +'<div class="slide-price">$'+Number(p.price).toFixed(2)+'</div>'
+      +'<div class="slide-stock '+stockClass+'">'+stockText+'</div>'
+      +'<div class="slide-actions">'
+      +'<button class="slide-view-btn" onclick="window.location=\'product.html?id='+p.id+'\'">View Details</button>'
+      +(oos?'':'<button class="slide-atc-btn" onclick="addToCart('+p.id+',\''+p.name.replace(/'/g,"\\'")+'\','+p.price+',\''+p.emoji+'\',\''+(p.image||'').replace(/'/g,"\\'")+'\','+(p.stock||0)+')">Add to Cart</button>')
+      +'</div></div></div>';
+    container.appendChild(slide);
+    var dot = document.createElement('div');
+    dot.className = 'carousel-dot'+(idx===0?' active':'');
+    dot.onclick = (function(i){return function(){goToSlide(i);};})(idx);
+    dotsContainer.appendChild(dot);
+  });
+  updateGlow(0);
+}
+
+function updateGlow(idx) {
+  var slides = document.querySelectorAll('.carousel-slide');
+  if (slides[idx]) {
+    document.getElementById('carousel-glow').style.background =
+      'radial-gradient(ellipse 60% 60% at 50% 50%, '+slides[idx].dataset.glow+' 0%, transparent 70%)';
+  }
+}
+function goToSlide(idx) {
+  if (isTransitioning||idx===currentSlide) return;
+  isTransitioning = true;
+  var slides = document.querySelectorAll('.carousel-slide');
+  var dots = document.querySelectorAll('.carousel-dot');
+  slides[currentSlide].classList.add('exiting');
+  slides[currentSlide].classList.remove('active');
+  var prev = currentSlide; currentSlide = idx;
+  setTimeout(function(){
+    slides[prev].classList.remove('exiting');
+    slides[currentSlide].classList.add('active');
+    updateGlow(currentSlide);
+    dots.forEach(function(d,i){d.classList.toggle('active',i===currentSlide);});
+    isTransitioning = false;
+  }, 300);
+}
+function onScroll() {
+  var section = document.getElementById('carousel-section');
+  if (!section || !carouselItems.length) return;
+  var rect = section.getBoundingClientRect();
+  var sectionTop = -rect.top;
+  var sectionHeight = rect.height - window.innerHeight;
+  var progress = Math.max(0, Math.min(1, sectionTop/sectionHeight));
+  var target = Math.min(carouselItems.length-1, Math.floor(progress*carouselItems.length));
+  if (sectionTop > 50) document.getElementById('scroll-hint').style.opacity='0';
+  else document.getElementById('scroll-hint').style.opacity='1';
+  if (target !== currentSlide) goToSlide(target);
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+
+function filterProducts(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  renderShop();
+}
+
+function renderShop() {
+  var filtered = currentFilter==='All' ? allProducts : allProducts.filter(function(p){return p.category===currentFilter;});
+  var grid = document.getElementById('shop-grid');
+  if (!filtered.length) { grid.innerHTML='<div style="color:var(--light-muted);padding:3rem;text-align:center;">No products in this category.</div>'; return; }
+  var html = '';
+  filtered.forEach(function(p) {
+    var oos = (p.stock||0) <= 0; var low = p.stock>0&&p.stock<=3;
+    var vis = (p.image&&p.image.trim())
+      ? '<img src="'+p.image+'" alt="'+p.name+'" style="width:100%;height:220px;object-fit:cover;" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\';">'
+        +'<div style="display:none;width:100%;height:220px;align-items:center;justify-content:center;font-size:4rem;">'+p.emoji+'</div>'
+      : p.emoji;
+    html += '<div class="product-card'+(oos?' out-of-stock':'')+'" onclick="'+(oos?'':'window.location=\'product.html?id='+p.id+'\'') +'">';
+    html += '<div class="product-img">'+vis;
+    if(oos) html+='<div class="oos-badge">Out of Stock</div>';
+    else if(low) html+='<div class="low-badge">Only '+p.stock+' left</div>';
+    html += '</div><div class="product-info">';
+    html += '<div class="product-cat">'+p.category+'</div>';
+    html += '<div class="product-name">'+p.name+'</div>';
+    html += '<div class="product-desc">'+p.desc+'</div>';
+    html += '<div class="product-footer"><div><div class="product-price">$'+Number(p.price).toFixed(2)+'</div>';
+    html += '<div class="product-stock-label">'+(oos?'Out of stock':(p.stock||0)+' in stock')+'</div></div>';
+    if(!oos) html+='<button class="atc-btn" onclick="event.stopPropagation();addToCart('+p.id+',\''+p.name.replace(/'/g,"\\'")+'\','+p.price+',\''+p.emoji+'\',\''+(p.image||'').replace(/'/g,"\\'")+'\','+(p.stock||0)+')">Add to Cart</button>';
+    html += '</div></div></div>';
+  });
+  grid.innerHTML = html;
+}
+</script>
+</body>
+</html>

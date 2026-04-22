@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — She's Fit</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#1A1218;--deep:#221929;--panel:#2A1F2D;--card:#321F35;
+  --border:rgba(212,175,140,0.12);--border-bright:rgba(212,175,140,0.25);
+  --gold:#C9A96E;--gold2:#E8C99A;--rose:#D4768A;--rose-light:#F2AABB;
+  --white:#FFFFFF;--muted:#9E8EA0;
+  --light-bg:#FBF7F5;--light-card:#FFFFFF;--light-border:#EDE4E8;
+  --light-text:#2C1F2E;--light-muted:#8A7A8C;--success:#7BC4A0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--light-bg);color:var(--light-text);}
+a{text-decoration:none;color:inherit;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:70px;background:var(--deep);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.7rem;letter-spacing:0.08em;color:var(--white);font-style:italic;}
+.nav-logo span{color:var(--gold);}
+.nav-back{font-size:0.8rem;color:rgba(255,255,255,0.48);}
+.nav-back:hover{color:var(--gold);}
+.page{display:grid;grid-template-columns:1fr 380px;gap:2.5rem;padding:5.5rem 5rem 5rem;max-width:1200px;margin:0 auto;}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--light-text);letter-spacing:0.01em;margin-bottom:0.3rem;font-weight:500;}
+.page-sub{color:var(--light-muted);font-size:0.88rem;margin-bottom:2rem;font-weight:300;}
+.form-card{background:var(--light-card);border:1px solid var(--light-border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;}
+.form-card h2{font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--light-muted);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--light-border);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem;}
+.form-group label{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--light-muted);}
+.form-group input,.form-group select{padding:0.75rem 1rem;border:1px solid var(--light-border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.92rem;background:var(--light-bg);color:var(--light-text);outline:none;transition:border 0.2s;}
+.form-group input:focus,.form-group select:focus{border-color:var(--gold);background:var(--white);}
+.order-panel{background:var(--deep);border-radius:12px;padding:2rem;border:1px solid var(--border);position:sticky;top:90px;height:fit-content;}
+.panel-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--white);margin-bottom:1.5rem;letter-spacing:0.03em;font-style:italic;font-weight:500;}
+.summary-item{display:flex;align-items:center;gap:1rem;padding:0.7rem 0;border-bottom:1px solid var(--border);}
+.s-thumb{width:44px;height:44px;background:var(--card);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;overflow:hidden;}
+.s-thumb img{width:100%;height:100%;object-fit:cover;}
+.s-name{flex:1;font-size:0.86rem;color:rgba(255,255,255,0.8);}
+.s-qty{font-size:0.73rem;color:var(--muted);}
+.s-price{font-size:0.86rem;font-weight:600;color:var(--white);}
+.divider{border:none;border-top:1px solid var(--border);margin:1rem 0;}
+.summary-row{display:flex;justify-content:space-between;font-size:0.86rem;padding:0.35rem 0;color:rgba(255,255,255,0.48);}
+.summary-row.total{font-weight:700;font-size:1.05rem;color:var(--white);border-top:1px solid var(--border);margin-top:0.5rem;padding-top:1rem;}
+.place-btn{width:100%;background:var(--gold);color:var(--black);padding:1rem;border-radius:6px;font-size:0.86rem;font-weight:700;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;margin-top:1.5rem;}
+.place-btn:hover{background:var(--gold2);transform:translateY(-2px);}
+.place-btn:disabled{background:var(--muted);cursor:not-allowed;transform:none;}
+.confirmation{display:none;max-width:640px;margin:0 auto;padding:6rem 2rem 4rem;text-align:center;}
+.confirm-check{width:72px;height:72px;background:rgba(123,196,160,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:2rem;}
+.confirm-title{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--light-text);margin-bottom:0.5rem;letter-spacing:0.01em;font-weight:500;}
+.confirm-sub{color:var(--light-muted);margin-bottom:2rem;font-size:0.93rem;line-height:1.75;font-weight:300;}
+.order-num-box{background:var(--deep);border-radius:12px;padding:1.5rem 2rem;margin:0 auto 2rem;}
+.order-num-label{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;font-weight:600;}
+.order-num{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--white);letter-spacing:0.1em;font-weight:500;}
+.payment-box{background:var(--light-card);border:1px solid var(--light-border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;text-align:left;}
+.payment-box h3{font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--light-text);margin-bottom:0.5rem;}
+.payment-box p{font-size:0.86rem;color:var(--light-muted);line-height:1.75;margin-bottom:1.5rem;font-weight:300;}
+.pay-methods{display:flex;flex-direction:column;gap:0.8rem;}
+.pay-method{display:flex;align-items:center;gap:1rem;background:var(--light-bg);border:1px solid var(--light-border);border-radius:8px;padding:1rem 1.2rem;}
+.pay-icon{width:36px;height:36px;background:var(--deep);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.pay-name{font-weight:600;font-size:0.88rem;}
+.pay-handle{font-size:0.8rem;color:var(--rose);font-family:monospace;font-weight:600;}
+.pay-note{background:rgba(201,169,110,0.06);border:1px solid rgba(201,169,110,0.2);border-radius:8px;padding:1rem 1.2rem;font-size:0.8rem;color:var(--light-text);line-height:1.75;margin-top:1rem;}
+.custom-msg-box{display:none;background:var(--light-card);border:1px solid var(--light-border);border-radius:12px;padding:1.5rem;text-align:left;margin-bottom:1.5rem;}
+.custom-msg-label{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:0.5rem;}
+.confirm-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-outline{border:1.5px solid var(--light-border);color:var(--light-text);padding:0.75rem 1.6rem;border-radius:6px;font-weight:600;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.btn-outline:hover{border-color:var(--light-text);}
+.btn-primary{background:var(--rose);color:white;padding:0.75rem 1.6rem;border-radius:6px;font-weight:700;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.btn-primary:hover{background:var(--gold);color:var(--black);}
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--panel);color:var(--white);border:1px solid var(--border-bright);padding:1rem 1.5rem;border-radius:8px;font-size:0.86rem;font-weight:500;opacity:0;transform:translateY(20px);transition:all 0.3s;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,0.4);}
+.toast.show{opacity:1;transform:translateY(0);}
+.age-gate-overlay{position:fixed;inset:0;z-index:99999;background:rgba(22,12,25,0.97);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);transition:opacity 0.4s;}
+.age-gate-overlay.hidden{opacity:0;pointer-events:none;}
+.age-gate-box{background:var(--card);border:1px solid var(--border-bright);border-radius:16px;padding:3rem 2.5rem;max-width:440px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,0.6);}
+.age-gate-icon{font-size:2.8rem;margin-bottom:1rem;}
+.age-gate-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:#FFF;letter-spacing:0.03em;margin-bottom:0.5rem;font-weight:500;}
+.age-gate-title span{color:var(--gold);}
+.age-gate-sub{font-size:0.85rem;color:rgba(255,255,255,0.48);line-height:1.75;margin-bottom:2rem;font-weight:300;}
+.age-gate-actions{display:flex;gap:1rem;}
+.age-gate-yes{flex:1;background:var(--gold);color:var(--black);padding:0.9rem;border:none;border-radius:6px;font-size:0.85rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-no{flex:1;background:transparent;color:rgba(255,255,255,0.35);padding:0.9rem;border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-size:0.85rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-disclaimer{font-size:0.7rem;color:rgba(255,255,255,0.2);margin-top:1.5rem;line-height:1.65;}
+@media(max-width:768px){nav{padding:0 1.5rem;}.page{grid-template-columns:1fr;padding:5.5rem 1.5rem 3rem;}.order-panel{position:static;}.form-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="age-gate-overlay" id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-icon">🌸</div>
+    <h2 class="age-gate-title">Welcome to <span>She's Fit</span></h2>
+    <p class="age-gate-sub">This website contains products intended for adults only. You must be 21 years of age or older to enter.</p>
+    <div class="age-gate-actions">
+      <button class="age-gate-yes" onclick="ageGateConfirm()">Yes, I'm 21+</button>
+      <button class="age-gate-no" onclick="ageGateDeny()">No, Exit</button>
+    </div>
+    <p class="age-gate-disclaimer">By entering this site you confirm you are of legal age in your jurisdiction and agree to our terms of use.</p>
+  </div>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo">She's <span>Fit</span></a>
+  <a href="cart.html" class="nav-back">← Back to Cart</a>
+</nav>
+<div class="page" id="checkout-page">
+  <div>
+    <h1 class="page-title">Checkout</h1>
+    <p class="page-sub">Complete your details below to place your order.</p>
+    <div class="form-card">
+      <h2>Contact Information</h2>
+      <div class="form-group"><label>Full Name</label><input type="text" id="f-name" placeholder="Jane Smith"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Email</label><input type="email" id="f-email" placeholder="jane@example.com"></div>
+        <div class="form-group"><label>Phone (optional)</label><input type="tel" id="f-phone" placeholder="(555) 000-0000"></div>
+      </div>
+    </div>
+    <div class="form-card">
+      <h2>Shipping Address</h2>
+      <div class="form-group"><label>Street Address</label><input type="text" id="f-addr" placeholder="123 Main Street"></div>
+      <div class="form-group"><label>Apt / Suite (optional)</label><input type="text" id="f-addr2" placeholder="Apt 4B"></div>
+      <div class="form-row">
+        <div class="form-group"><label>City</label><input type="text" id="f-city" placeholder="Los Angeles"></div>
+        <div class="form-group"><label>State</label><input type="text" id="f-state" placeholder="CA"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>ZIP Code</label><input type="text" id="f-zip" placeholder="90001"></div>
+        <div class="form-group"><label>Country</label>
+          <select id="f-country"><option>United States</option><option>Canada</option><option>United Kingdom</option><option>Australia</option><option>Other</option></select>
+        </div>
+      </div>
+    </div>
+    <div class="form-card">
+      <h2>Order Notes (optional)</h2>
+      <div class="form-group"><label>Special instructions</label><input type="text" id="f-notes" placeholder="e.g. Leave at door"></div>
+    </div>
+  </div>
+  <div>
+    <div class="order-panel">
+      <div class="panel-title">Your Order</div>
+      <div id="summary-items"></div>
+      <hr class="divider">
+      <div class="summary-row"><span>Subtotal</span><span id="s-subtotal">$0.00</span></div>
+      <div class="summary-row"><span>Shipping</span><span>Confirmed after order</span></div>
+      <div class="summary-row total"><span>Total</span><span id="s-total">$0.00</span></div>
+      <div style="margin-top:1.2rem;margin-bottom:0.8rem;display:flex;align-items:flex-start;gap:0.7rem;">
+        <input type="checkbox" id="terms-checkbox" style="margin-top:3px;width:16px;height:16px;accent-color:var(--gold);flex-shrink:0;cursor:pointer;">
+        <label for="terms-checkbox" style="font-size:0.76rem;color:rgba(255,255,255,0.45);line-height:1.6;cursor:pointer;font-weight:300;">
+          I confirm I am 21+ years of age, that all products are for research use only and NOT for human consumption, and I agree to the
+          <a href="pdfs/shesfit-terms.pdf" target="_blank" style="color:var(--gold);text-decoration:underline;">Terms and Conditions</a>.
+          I assume full responsibility for my purchase and use of any product.
+        </label>
+      </div>
+      <button class="place-btn" id="place-btn" onclick="placeOrder()">Place Order →</button>
+      <p style="text-align:center;font-size:0.73rem;color:var(--muted);margin-top:1rem;">Payment instructions shown after placing order</p>
+    </div>
+  </div>
+</div>
+<div class="confirmation" id="confirmation-page">
+  <div class="confirm-check">✓</div>
+  <h1 class="confirm-title">Order Placed!</h1>
+  <p class="confirm-sub">Your order has been received. Complete your payment using the details below and include your order number in the notes.</p>
+  <div class="order-num-box">
+    <div class="order-num-label">Your Order Number</div>
+    <div class="order-num" id="confirm-order-num">#----</div>
+  </div>
+  <div class="payment-box">
+    <h3>Complete Your Payment</h3>
+    <p>Send <strong id="confirm-total">$0.00</strong> to any method below. Include your order number <strong id="confirm-order-num-2">#----</strong> in the payment notes.</p>
+    <div class="pay-methods">
+      <div class="pay-method"><div class="pay-icon">💸</div><div><div class="pay-name">Venmo</div><div class="pay-handle">@shesfit</div></div></div>
+      <div class="pay-method"><div class="pay-icon">⚡</div><div><div class="pay-name">Zelle</div><div class="pay-handle">shsfitadmin@proton.me</div></div></div>
+      <div class="pay-method"><div class="pay-icon">💚</div><div><div class="pay-name">CashApp</div><div class="pay-handle">$shesfit</div></div></div>
+    </div>
+    <div class="pay-note">✦ <strong>Important:</strong> Include your order number in the payment memo. We'll confirm and ship within 1–3 business days after payment is verified.</div>
+  </div>
+  <div class="custom-msg-box" id="custom-msg-box">
+    <div class="custom-msg-label">A note from us</div>
+    <p id="custom-msg-text" style="font-size:0.88rem;line-height:1.8;color:var(--light-text);margin-top:0.4rem;font-weight:300;"></p>
+  </div>
+  <div class="confirm-actions">
+    <button class="btn-outline" onclick="window.print()">Save / Print</button>
+    <a href="shop.html" class="btn-primary">Continue Shopping</a>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="db.js"></script>
+<script src="chatbot.js"></script>
+<script>
+initAgeGate();
+var cart = getCart();
+if (!cart.length) window.location = 'cart.html';
+
+(function(){
+  var c = document.getElementById('summary-items');
+  var html = '';
+  cart.forEach(function(i){
+    var thumb = (i.image&&i.image.trim()) ? '<img src="'+i.image+'" style="width:100%;height:100%;object-fit:cover;">' : i.emoji;
+    html += '<div class="summary-item"><div class="s-thumb">'+thumb+'</div>';
+    html += '<div class="s-name">'+i.name+'<br><span class="s-qty">Qty: '+i.qty+'</span></div>';
+    html += '<div class="s-price">$'+(i.price*i.qty).toFixed(2)+'</div></div>';
+  });
+  c.innerHTML = html;
+  var sub = cart.reduce(function(s,i){return s+i.price*i.qty;},0);
+  document.getElementById('s-subtotal').textContent = '$'+sub.toFixed(2);
+  document.getElementById('s-total').textContent = '$'+sub.toFixed(2);
+})();
+
+function placeOrder() {
+  if (!document.getElementById('terms-checkbox').checked) {
+    alert('Please read and agree to the Terms and Conditions to complete your order.');
+    return;
+  }
+  var name = document.getElementById('f-name').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var addr = document.getElementById('f-addr').value.trim();
+  var city = document.getElementById('f-city').value.trim();
+  var state = document.getElementById('f-state').value.trim();
+  var zip = document.getElementById('f-zip').value.trim();
+  var phone = document.getElementById('f-phone').value.trim()||'Not provided';
+  var country = document.getElementById('f-country').value;
+  var notes = document.getElementById('f-notes').value.trim()||'None';
+  if (!name||!email||!addr||!city||!state||!zip) { alert('Please fill in all required fields.'); return; }
+  if (!/\S+@\S+\.\S+/.test(email)) { alert('Please enter a valid email address.'); return; }
+  var btn = document.getElementById('place-btn');
+  btn.disabled = true; btn.textContent = 'Placing order...';
+  var orderNum = generateOrderNumber();
+  var subtotal = cart.reduce(function(s,i){return s+i.price*i.qty;},0);
+  var itemsStr = cart.map(function(i){return i.name+' x'+i.qty+' = $'+(i.price*i.qty).toFixed(2);}).join(', ');
+
+  depleteStock(cart, function() {
+    saveOrder({
+      orderNumber: orderNum,
+      date: new Date().toISOString(),
+      customer: {name:name,email:email,phone:phone,addr:addr,city:city,state:state,zip:zip,country:country,notes:notes},
+      items: cart,
+      total: subtotal
+    }, function() {
+      // Notify owner
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:'9896efd3-e7f4-4166-9da7-add594ca4d3f',subject:'New Order '+orderNum+' — She\'s Fit',from_name:'She\'s Fit Orders',replyto:email,order_number:orderNum,date:new Date().toLocaleString(),customer_name:name,customer_email:email,customer_phone:phone,shipping_address:addr+', '+city+', '+state+' '+zip+', '+country,order_notes:notes,items:itemsStr,order_total:'$'+subtotal.toFixed(2)})}).catch(function(){});
+      // Customer confirmation
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:'9896efd3-e7f4-4166-9da7-add594ca4d3f',subject:'Your She\'s Fit Order '+orderNum+' is Received!',from_name:'She\'s Fit',to_email:email,message:'Hi '+name+',\n\nThank you for your order! It has been placed successfully.\n\nOrder Number: '+orderNum+'\nItems: '+itemsStr+'\nTotal: $'+subtotal.toFixed(2)+'\n\nTo complete your purchase, send $'+subtotal.toFixed(2)+' with order number '+orderNum+' in the notes to:\n\n  Venmo: @shesfit\n  Zelle: shsfitadmin@proton.me\n  CashApp: $shesfit\n\nWe will send a second confirmation once payment is verified and ship within 1-3 business days.\n\nThank you for supporting She\'s Fit!\n— The She\'s Fit Team'})}).catch(function(){});
+      getSettings(function(settings) {
+        var msg = settings.custom_msg||'';
+        if (msg.trim()) { document.getElementById('custom-msg-text').textContent=msg; document.getElementById('custom-msg-box').style.display='block'; }
+      });
+      saveCart([]);
+      document.getElementById('confirm-order-num').textContent = orderNum;
+      document.getElementById('confirm-order-num-2').textContent = orderNum;
+      document.getElementById('confirm-total').textContent = '$'+subtotal.toFixed(2);
+      document.getElementById('checkout-page').style.display = 'none';
+      document.getElementById('confirmation-page').style.display = 'block';
+      window.scrollTo(0,0);
+    });
+  });
+}
+</script>
+</body>
+</html>

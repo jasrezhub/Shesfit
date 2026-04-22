@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart — She's Fit</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#1A1218;--deep:#221929;--panel:#2A1F2D;--card:#321F35;
+  --border:rgba(212,175,140,0.12);--border-bright:rgba(212,175,140,0.25);
+  --gold:#C9A96E;--gold2:#E8C99A;--rose:#D4768A;--rose-light:#F2AABB;
+  --white:#FFFFFF;--muted:#9E8EA0;
+  --light-bg:#FBF7F5;--light-card:#FFFFFF;--light-border:#EDE4E8;
+  --light-text:#2C1F2E;--light-muted:#8A7A8C;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--light-bg);color:var(--light-text);}
+a{text-decoration:none;color:inherit;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:70px;background:var(--deep);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.7rem;letter-spacing:0.08em;color:var(--white);font-style:italic;}
+.nav-logo span{color:var(--gold);}
+.nav-back{font-size:0.8rem;color:rgba(255,255,255,0.48);}
+.nav-back:hover{color:var(--gold);}
+.cart-btn{display:flex;align-items:center;gap:0.5rem;background:var(--gold);color:var(--black);padding:0.5rem 1.2rem;border-radius:4px;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.cart-count-badge{background:var(--black);color:var(--gold);border-radius:3px;padding:1px 6px;font-size:0.72rem;font-weight:700;}
+.page{display:grid;grid-template-columns:1fr 360px;gap:2.5rem;padding:5.5rem 5rem 5rem;max-width:1200px;margin:0 auto;}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--light-text);letter-spacing:0.01em;margin-bottom:2rem;font-weight:500;}
+.cart-item{display:flex;align-items:center;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--light-border);}
+.item-thumb{width:80px;height:80px;border-radius:8px;background:linear-gradient(135deg,#2A1F2D,#3D2840);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;overflow:hidden;}
+.item-thumb img{width:100%;height:100%;object-fit:cover;}
+.item-details{flex:1;}
+.item-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;color:var(--light-text);margin-bottom:0.2rem;}
+.item-price{font-size:0.83rem;color:var(--light-muted);}
+.item-controls{display:flex;align-items:center;gap:0.6rem;margin-top:0.6rem;}
+.qty-btn{width:28px;height:28px;border-radius:5px;border:1px solid var(--light-border);background:var(--light-card);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;transition:all 0.15s;}
+.qty-btn:hover{border-color:var(--gold);color:var(--gold);}
+.qty-num{font-size:0.88rem;font-weight:600;min-width:24px;text-align:center;}
+.remove-btn{font-size:0.76rem;color:var(--light-muted);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;margin-left:0.5rem;transition:color 0.15s;}
+.remove-btn:hover{color:#C05050;}
+.item-subtotal{font-weight:600;font-size:1rem;min-width:72px;text-align:right;color:var(--light-text);}
+.empty-cart{text-align:center;padding:5rem 2rem;color:var(--light-muted);}
+.empty-cart h2{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--light-text);margin-bottom:1rem;font-weight:500;}
+.order-summary{background:var(--deep);border-radius:12px;padding:2rem;border:1px solid var(--border);position:sticky;top:90px;height:fit-content;}
+.summary-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--white);margin-bottom:1.5rem;letter-spacing:0.03em;font-style:italic;font-weight:500;}
+.summary-row{display:flex;justify-content:space-between;font-size:0.88rem;padding:0.5rem 0;color:rgba(255,255,255,0.5);}
+.summary-row.total{border-top:1px solid var(--border);margin-top:0.5rem;padding-top:1rem;font-weight:600;font-size:1.05rem;color:var(--white);}
+.checkout-btn{width:100%;background:var(--gold);color:var(--black);padding:1rem;border-radius:6px;font-size:0.86rem;font-weight:700;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;margin-top:1.5rem;}
+.checkout-btn:hover{background:var(--gold2);transform:translateY(-2px);}
+.continue-link{display:block;text-align:center;margin-top:1rem;font-size:0.8rem;color:var(--muted);}
+.continue-link a{color:var(--rose-light);}
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--panel);color:var(--white);border:1px solid var(--border-bright);padding:1rem 1.5rem;border-radius:8px;font-size:0.86rem;font-weight:500;opacity:0;transform:translateY(20px);transition:all 0.3s;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,0.4);}
+.toast.show{opacity:1;transform:translateY(0);}
+.age-gate-overlay{position:fixed;inset:0;z-index:99999;background:rgba(22,12,25,0.97);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);transition:opacity 0.4s;}
+.age-gate-overlay.hidden{opacity:0;pointer-events:none;}
+.age-gate-box{background:var(--card);border:1px solid var(--border-bright);border-radius:16px;padding:3rem 2.5rem;max-width:440px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,0.6);}
+.age-gate-icon{font-size:2.8rem;margin-bottom:1rem;}
+.age-gate-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:#FFF;letter-spacing:0.03em;margin-bottom:0.5rem;font-weight:500;}
+.age-gate-title span{color:var(--gold);}
+.age-gate-sub{font-size:0.85rem;color:rgba(255,255,255,0.48);line-height:1.75;margin-bottom:2rem;font-weight:300;}
+.age-gate-actions{display:flex;gap:1rem;}
+.age-gate-yes{flex:1;background:var(--gold);color:var(--black);padding:0.9rem;border:none;border-radius:6px;font-size:0.85rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-no{flex:1;background:transparent;color:rgba(255,255,255,0.35);padding:0.9rem;border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-size:0.85rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-disclaimer{font-size:0.7rem;color:rgba(255,255,255,0.2);margin-top:1.5rem;line-height:1.65;}
+@media(max-width:768px){nav{padding:0 1.5rem;}.page{grid-template-columns:1fr;padding:5.5rem 1.5rem 3rem;}.order-summary{position:static;}}
+</style>
+</head>
+<body>
+<div class="age-gate-overlay" id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-icon">🌸</div>
+    <h2 class="age-gate-title">Welcome to <span>She's Fit</span></h2>
+    <p class="age-gate-sub">This website contains products intended for adults only. You must be 21 years of age or older to enter.</p>
+    <div class="age-gate-actions">
+      <button class="age-gate-yes" onclick="ageGateConfirm()">Yes, I'm 21+</button>
+      <button class="age-gate-no" onclick="ageGateDeny()">No, Exit</button>
+    </div>
+    <p class="age-gate-disclaimer">By entering this site you confirm you are of legal age in your jurisdiction and agree to our terms of use.</p>
+  </div>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo">She's <span>Fit</span></a>
+  <a href="shop.html" class="nav-back">← Continue Shopping</a>
+  <button class="cart-btn">Cart <span class="cart-count-badge" id="cart-count">0</span></button>
+</nav>
+<div class="page">
+  <div>
+    <h1 class="page-title">Your Cart</h1>
+    <div id="cart-items"></div>
+  </div>
+  <div>
+    <div class="order-summary">
+      <div class="summary-title">Order Summary</div>
+      <div class="summary-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+      <div class="summary-row"><span>Shipping</span><span>Confirmed after order</span></div>
+      <div class="summary-row total"><span>Total</span><span id="total">$0.00</span></div>
+      <button class="checkout-btn" onclick="window.location='checkout.html'">Proceed to Checkout →</button>
+      <div class="continue-link"><a href="shop.html">← Back to Shop</a></div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="db.js"></script>
+<script src="chatbot.js"></script>
+<script>
+initAgeGate();
+updateCartCount();
+renderCart();
+function renderCart() {
+  var cart = getCart();
+  var container = document.getElementById('cart-items');
+  if (!cart.length) {
+    container.innerHTML = '<div class="empty-cart"><h2>Your Cart is Empty</h2><p>You haven\'t added anything yet.</p><br><a href="shop.html" style="color:var(--rose);font-weight:600;">Browse the collection →</a></div>';
+    document.getElementById('subtotal').textContent = '$0.00';
+    document.getElementById('total').textContent = '$0.00';
+    return;
+  }
+  var html = '';
+  cart.forEach(function(item,idx){
+    var thumb = (item.image&&item.image.trim()) ? '<img src="'+item.image+'" style="width:100%;height:100%;object-fit:cover;">' : item.emoji;
+    html += '<div class="cart-item">';
+    html += '<div class="item-thumb">'+thumb+'</div>';
+    html += '<div class="item-details"><div class="item-name">'+item.name+'</div>';
+    html += '<div class="item-price">$'+Number(item.price).toFixed(2)+' each</div>';
+    html += '<div class="item-controls">';
+    html += '<button class="qty-btn" onclick="updateQty('+idx+',-1)">−</button>';
+    html += '<span class="qty-num">'+item.qty+'</span>';
+    html += '<button class="qty-btn" onclick="updateQty('+idx+',1)">+</button>';
+    html += '<button class="remove-btn" onclick="removeItem('+idx+')">Remove</button>';
+    html += '</div></div>';
+    html += '<div class="item-subtotal">$'+(item.price*item.qty).toFixed(2)+'</div>';
+    html += '</div>';
+  });
+  container.innerHTML = html;
+  var sub = cart.reduce(function(s,i){return s+i.price*i.qty;},0);
+  document.getElementById('subtotal').textContent = '$'+sub.toFixed(2);
+  document.getElementById('total').textContent = '$'+sub.toFixed(2);
+}
+function updateQty(idx,d){
+  var cart=getCart();
+  cart[idx].qty=Math.max(1,cart[idx].qty+d);
+  saveCart(cart);renderCart();
+}
+function removeItem(idx){
+  var cart=getCart();
+  cart.splice(idx,1);
+  saveCart(cart);renderCart();
+  showToast('Item removed.');
+}
+</script>
+</body>
+</html>

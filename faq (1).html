@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — She's Fit</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#1A1218;--deep:#221929;--panel:#2A1F2D;--card:#321F35;
+  --border:rgba(212,175,140,0.12);--border-bright:rgba(212,175,140,0.25);
+  --gold:#C9A96E;--gold2:#E8C99A;--rose:#D4768A;--rose-light:#F2AABB;
+  --white:#FFFFFF;--muted:#9E8EA0;
+  --light-bg:#FBF7F5;--light-card:#FFFFFF;--light-border:#EDE4E8;
+  --light-text:#2C1F2E;--light-muted:#8A7A8C;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--deep);color:var(--white);min-height:100vh;}
+a{text-decoration:none;color:inherit;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:70px;background:var(--deep);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.7rem;letter-spacing:0.08em;color:var(--white);font-style:italic;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:2.5rem;}
+.nav-links a{font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.cart-btn{display:flex;align-items:center;gap:0.5rem;background:var(--gold);color:var(--black);padding:0.5rem 1.2rem;border-radius:4px;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.cart-btn:hover{background:var(--gold2);}
+.cart-count-badge{background:var(--black);color:var(--gold);border-radius:3px;padding:1px 6px;font-size:0.72rem;font-weight:700;}
+.hero{padding:8rem 5rem 4rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 0%,rgba(212,118,138,0.06) 0%,transparent 70%),linear-gradient(rgba(212,175,140,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,140,0.02) 1px,transparent 1px);background-size:auto,60px 60px,60px 60px;pointer-events:none;}
+.eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--rose-light);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;position:relative;}
+.eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--rose-light);}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.5rem);color:var(--white);letter-spacing:0.01em;line-height:1.0;margin-bottom:1rem;position:relative;font-weight:500;}
+.hero h1 span{color:var(--gold);}
+.hero p{color:rgba(255,255,255,0.45);font-size:0.97rem;max-width:520px;line-height:1.85;position:relative;font-weight:300;}
+.faq-body{padding:2rem 5rem 6rem;max-width:860px;}
+.faq-category{margin-bottom:3rem;}
+.faq-category-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);letter-spacing:0.04em;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;gap:0.7rem;font-weight:500;font-style:italic;}
+.faq-category-title::before{content:'';display:block;width:4px;height:1.2rem;background:var(--gold);border-radius:2px;}
+.faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:0.7rem;overflow:hidden;transition:border-color 0.2s;}
+.faq-item:hover{border-color:rgba(212,175,140,0.2);}
+.faq-item.open{border-color:rgba(201,169,110,0.3);}
+.faq-question{width:100%;background:var(--card);border:none;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.93rem;font-weight:500;color:var(--white);text-align:left;gap:1rem;transition:background 0.2s;}
+.faq-question:hover{background:#3A2540;}
+.faq-item.open .faq-question{background:#3A2540;color:var(--gold);}
+.faq-icon{font-size:1rem;color:var(--muted);transition:transform 0.3s;flex-shrink:0;font-weight:300;}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--gold);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.35s ease;background:var(--panel);}
+.faq-item.open .faq-answer{max-height:400px;}
+.faq-answer-inner{padding:1.2rem 1.5rem;font-size:0.88rem;color:rgba(255,255,255,0.52);line-height:1.85;font-weight:300;}
+.faq-answer-inner a{color:var(--gold);border-bottom:1px solid rgba(201,169,110,0.3);}
+.faq-answer-inner a:hover{border-color:var(--gold);}
+.faq-answer-inner strong{color:rgba(255,255,255,0.82);font-weight:600;}
+.faq-cta{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2.5rem;margin-top:3rem;text-align:center;max-width:860px;margin-left:5rem;margin-right:auto;margin-bottom:4rem;}
+.faq-cta h3{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white);margin-bottom:0.5rem;letter-spacing:0.03em;font-weight:500;font-style:italic;}
+.faq-cta p{color:var(--muted);font-size:0.88rem;margin-bottom:1.5rem;line-height:1.75;font-weight:300;}
+.faq-cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--gold);color:var(--black);padding:0.85rem 2rem;border-radius:5px;font-weight:700;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;display:inline-block;font-family:'DM Sans',sans-serif;border:none;cursor:pointer;}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.55);padding:0.85rem 2rem;border-radius:5px;border:1px solid var(--border-bright);font-weight:500;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--rose);color:var(--rose);}
+.age-gate-overlay{position:fixed;inset:0;z-index:99999;background:rgba(22,12,25,0.97);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);transition:opacity 0.4s;}
+.age-gate-overlay.hidden{opacity:0;pointer-events:none;}
+.age-gate-box{background:var(--card);border:1px solid var(--border-bright);border-radius:16px;padding:3rem 2.5rem;max-width:440px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,0.6);}
+.age-gate-icon{font-size:2.8rem;margin-bottom:1rem;}
+.age-gate-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:#FFF;letter-spacing:0.03em;margin-bottom:0.5rem;font-weight:500;}
+.age-gate-title span{color:var(--gold);}
+.age-gate-sub{font-size:0.85rem;color:rgba(255,255,255,0.48);line-height:1.75;margin-bottom:2rem;font-weight:300;}
+.age-gate-actions{display:flex;gap:1rem;}
+.age-gate-yes{flex:1;background:var(--gold);color:var(--black);padding:0.9rem;border:none;border-radius:6px;font-size:0.85rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-no{flex:1;background:transparent;color:rgba(255,255,255,0.35);padding:0.9rem;border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-size:0.85rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-disclaimer{font-size:0.7rem;color:rgba(255,255,255,0.2);margin-top:1.5rem;line-height:1.65;}
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--panel);color:var(--white);border:1px solid var(--border-bright);padding:1rem 1.5rem;border-radius:8px;font-size:0.86rem;font-weight:500;opacity:0;transform:translateY(20px);transition:all 0.3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+@media(max-width:768px){nav{padding:0 1.5rem;}.nav-links{display:none;}.hero{padding:6rem 1.5rem 3rem;}.faq-body{padding:2rem 1.5rem 4rem;}.faq-cta{margin-left:1.5rem;margin-right:1.5rem;}}
+</style>
+</head>
+<body>
+<div class="age-gate-overlay" id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-icon">🌸</div>
+    <h2 class="age-gate-title">Welcome to <span>She's Fit</span></h2>
+    <p class="age-gate-sub">This website contains products intended for adults only. You must be 21 years of age or older to enter.</p>
+    <div class="age-gate-actions">
+      <button class="age-gate-yes" onclick="ageGateConfirm()">Yes, I'm 21+</button>
+      <button class="age-gate-no" onclick="ageGateDeny()">No, Exit</button>
+    </div>
+    <p class="age-gate-disclaimer">By entering this site you confirm you are of legal age in your jurisdiction and agree to our terms of use.</p>
+  </div>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo">She's <span>Fit</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="shop.html">Shop</a>
+    <a href="index.html#about">About</a><a href="index.html#reviews">Reviews</a>
+    <a href="coa.html">Lab Results</a>
+  </div>
+  <button class="cart-btn" onclick="window.location='cart.html'">Cart <span class="cart-count-badge" id="cart-count">0</span></button>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Support</div>
+  <h1>Frequently Asked <span>Questions</span></h1>
+  <p>Everything you need to know about our products, ordering process, and how we operate.</p>
+</div>
+
+<div class="faq-body">
+
+  <!-- PRODUCTS -->
+  <div class="faq-category">
+    <div class="faq-category-title">Products & Quality</div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        Are your products third-party lab tested?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        Yes — every batch is independently third-party lab tested with a minimum purity of <strong>99%</strong>. You can view and download the full Certificates of Analysis (COA) for any product on our <a href="coa.html">Lab Results page</a>.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        Why do you only carry limited stock?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        We prioritize quality over quantity. Each batch goes through extensive lab verification before we make it available. We intentionally keep smaller, limited batches to ensure every product that leaves our hands meets our strict purity standards.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        Where can I find lab results and certificates?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        All Certificates of Analysis are available on our <a href="coa.html">Lab Results page</a>. You can search by product name or batch number, view them directly in your browser, or download the PDF. New certificates are uploaded with every new batch.
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ORDERING -->
+  <div class="faq-category">
+    <div class="faq-category-title">Ordering</div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        How do I place an order?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        Browse our <a href="shop.html">Shop</a>, add items to your cart, and proceed to checkout. Fill in your contact and shipping information, then click <strong>Place Order</strong>. You'll receive a unique order number — include this in your payment notes so we can match your payment to your order.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        What payment methods do you accept?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        We currently accept peer-to-peer payments via:<br><br>
+        <strong>Venmo:</strong> @shesfit<br>
+        <strong>Zelle:</strong> shsfitadmin@proton.me<br>
+        <strong>CashApp:</strong> $shesfit<br><br>
+        Always include your order number in the payment notes so we can confirm and process your order quickly.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        Do I need to agree to any terms before ordering?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        Yes. At checkout you must confirm that you are 21 or older, that products are for research use only and not for human consumption, and that you agree to our <a href="pdfs/shesfit-terms.pdf" target="_blank">Terms and Conditions</a>. You must check this box to complete your order.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        Can I cancel or modify my order?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        Contact us at <a href="mailto:shsfitadmin@proton.me">shsfitadmin@proton.me</a> as soon as possible if you need to cancel or modify an order. We'll do our best to accommodate requests made before the order has been fulfilled, but cannot guarantee changes once processing has begun.
+      </div></div>
+    </div>
+  </div>
+
+  <!-- SHIPPING -->
+  <div class="faq-category">
+    <div class="faq-category-title">Shipping & Delivery</div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        How long does shipping take?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        Orders are fulfilled within <strong>24 hours</strong> of payment confirmation. Delivery time after fulfillment depends on your location and shipping method. We will send a confirmation once your order has shipped.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        Do you ship internationally?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        Currently we primarily serve customers within the United States. International shipping availability may vary. Email us at <a href="mailto:shsfitadmin@proton.me">shsfitadmin@proton.me</a> before placing an international order and we'll let you know what's possible for your location.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        How do I track my order?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        Once your order ships, we'll send tracking information to the email address you provided at checkout. If you haven't received tracking info within 48 hours of payment confirmation, please email us at <a href="mailto:shsfitadmin@proton.me">shsfitadmin@proton.me</a> with your order number.
+      </div></div>
+    </div>
+  </div>
+
+  <!-- RETURNS -->
+  <div class="faq-category">
+    <div class="faq-category-title">Returns & Guarantee</div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        What is your satisfaction guarantee?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        We stand behind our products 100%. If you are not satisfied with the purity or quality of any product, contact us at <a href="mailto:shsfitadmin@proton.me">shsfitadmin@proton.me</a> and we will work with you to make it right. Your satisfaction matters deeply to us.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        What if my order arrives damaged?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        If your order arrives damaged, please email us at <a href="mailto:shsfitadmin@proton.me">shsfitadmin@proton.me</a> within 48 hours of delivery with your order number and photos of the damage. We will arrange a replacement as quickly as possible.
+      </div></div>
+    </div>
+  </div>
+
+  <!-- LEGAL -->
+  <div class="faq-category">
+    <div class="faq-category-title">Legal & Compliance</div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        Are your products legal to purchase?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        It is your sole responsibility to determine the legality of purchasing and possessing any product in your jurisdiction before placing an order. She's Fit makes no representations about the legality of any product in any specific location. We strongly encourage you to research your local laws before purchasing.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        Who can purchase from She's Fit?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        You must be <strong>21 years of age or older</strong> to purchase from She's Fit. By placing an order, you represent that you meet this requirement and that you are a qualified individual purchasing for legitimate research purposes only.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFAQ(this)">
+        Where can I read the full Terms and Conditions?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        Our full Terms and Conditions are available as a PDF <a href="pdfs/shesfit-terms.pdf" target="_blank">here</a>. We strongly encourage all customers to read these before placing their first order. By purchasing from us, you agree to be bound by these terms in their entirety.
+      </div></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="faq-cta">
+  <h3>Still Have Questions?</h3>
+  <p>Our team is always happy to help. Reach out and we'll get back to you as soon as possible.</p>
+  <div class="faq-cta-btns">
+    <a href="mailto:shsfitadmin@proton.me" class="btn-primary">Email Us</a>
+    <a href="shop.html" class="btn-ghost">Browse Products</a>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="db.js"></script>
+<script src="chatbot.js"></script>
+<script>
+initAgeGate();
+updateCartCount();
+function toggleFAQ(btn) {
+  var item = btn.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
